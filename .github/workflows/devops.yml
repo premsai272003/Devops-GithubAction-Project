@@ -10,18 +10,21 @@ jobs:
            - name: Code checkout
              uses: actions/checkout@v7
    build:
+         needs: code
          runs-on: ubuntu-latest
          steps:
             - name: Code Build with docker
               run: echo "docker todo"
 
    test:
+         needs: build
          runs-on: ubuntu-latest
          steps:
             - name: Code test
               run: echo "Code testing done"
 
    deploy:
+          needs: test
           runs-on: ubuntu-latest
           steps:
              - name: Code deploy
